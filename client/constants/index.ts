@@ -15,6 +15,7 @@ export const black = {
 
 export const Colors = {
   primary: "rgba(234, 55, 74, 1)",
+  secondary: "#29376B",
   light: {
     text: "#11181C",
     background: "#fff",

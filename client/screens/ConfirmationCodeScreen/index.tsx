@@ -3,6 +3,7 @@ import CountdownTimer from "@/components/ConfirmationCodeScreen/CountdownTimer";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 import PrimaryButton from "@/components/PrimaryButton";
+import { router } from "expo-router";
 import React from "react";
 import { SafeAreaView, Text, View } from "react-native";
 
@@ -32,7 +33,10 @@ const ConfirmationCodeScreen = () => {
         </View>
       </View>
       <View className="flex-1" />
-      <PrimaryButton title="Confirm OTP" />
+      <PrimaryButton
+        onPress={() => router.push("/(root)/(tabs)")}
+        title="Confirm OTP"
+      />
     </SafeAreaView>
   );
 };

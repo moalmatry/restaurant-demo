@@ -1,3 +1,4 @@
+import { cn } from "@/util";
 import React from "react";
 import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
 
@@ -5,18 +6,34 @@ export interface PrimaryButtonProps {
   title: string;
   isLoading?: boolean;
   onPress?: () => void;
+  className?: string;
+  textClassName?: string;
 }
 
-const PrimaryButton = ({ onPress, title, isLoading }: PrimaryButtonProps) => {
+const PrimaryButton = ({
+  onPress,
+  title,
+  isLoading,
+  className,
+  textClassName,
+}: PrimaryButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="h-14 bg-primary-100 justify-center flex rounded-full items-center"
+      className={cn(
+        "h-14 bg-primary-100 justify-center flex rounded-full items-center",
+        className
+      )}
     >
       {isLoading ? (
         <ActivityIndicator size="large" className="text-accent-100" />
       ) : (
-        <Text className="text-center text-2xl text-accent-100 font-rubik">
+        <Text
+          className={cn(
+            "text-center text-2xl text-accent-100 font-rubik",
+            textClassName
+          )}
+        >
           {title}
         </Text>
       )}

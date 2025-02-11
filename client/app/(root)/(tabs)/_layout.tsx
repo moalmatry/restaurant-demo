@@ -1,67 +1,51 @@
+import TabIcon from "@/components/TabIcon";
+import TobTabsHeader from "@/components/TopTabsHeader";
 import icons from "@/constants/icons";
 import { Tabs } from "expo-router";
 import React from "react";
-import { Image, Text, View } from "react-native";
-
-const TabIcon = ({
-  focused,
-  icon,
-  title,
-}: {
-  focused: boolean;
-  icon: any;
-  title: string;
-}) => (
-  <View className="flex-1 mt-3 flex flex-col items-center">
-    <Image
-      source={icon}
-      tintColor={focused ? "#0061ff" : "#666876"}
-      resizeMode="contain"
-      className="size-6"
-    />
-    <Text
-      className={`${
-        focused
-          ? "text-primary-300 font-rubik-medium"
-          : "text-black-200 font-rubik"
-      } text-xs w-full text-center`}
-    >
-      {title}
-    </Text>
-  </View>
-);
 
 const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
+        headerShown: false,
         tabBarShowLabel: false,
+
         tabBarStyle: {
           backgroundColor: "white",
           position: "absolute",
           borderTopColor: "#0061FF1A",
           borderTopWidth: 1,
-          minHeight: 60,
+          minHeight: 79,
+          borderTopEndRadius: 30,
+          borderTopStartRadius: 30,
+          // shadowRadius: 300,
+          // shadowOffset: {
+          //   height: 20,
+          //   width: 30,
+          // },
+          // elevation: 30,
         },
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="(top-tabs)"
         options={{
-          title: "Home",
-          headerShown: false,
+          headerShown: true,
+          headerShadowVisible: false,
+          header: () => <TobTabsHeader />,
           tabBarIcon: ({ focused }) => (
             <TabIcon icon={icons.homeSmile} focused={focused} title="Home" />
           ),
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="settings"
         options={{
-          title: "Explore",
-          headerShown: false,
+          title: "Settings",
           tabBarIcon: ({ focused }) => (
-            <TabIcon icon={icons.languages} focused={focused} title="Explore" />
+            <TabIcon icon={icons.settings} focused={focused} title="Settings" />
           ),
         }}
       />
