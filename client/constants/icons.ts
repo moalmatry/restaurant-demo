@@ -34,7 +34,11 @@ import wifi from "@/assets/icons/wifi.png";
 import location from "@/assets/icons/location.png";
 import edit from "@/assets/icons/edit.png";
 import settings from "@/assets/icons/setting.png";
+import us from "@/assets/icons/us-icon.png";
+import egypt from "@/assets/icons/egypt.png";
 export default {
+  us,
+  egypt,
   settings,
   backArrow,
   homeSmile,

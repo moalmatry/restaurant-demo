@@ -2,16 +2,18 @@ import CustomBottomSheetModal from "@/components/CustomBottomSheetModal";
 import Header from "@/components/Header";
 import PrimaryButton from "@/components/PrimaryButton";
 import ProfileImage from "@/components/ProfileScreen/ProfileImage";
+import Radio from "@/components/Radio";
 import SettingItem from "@/components/SettingItem";
-import { settings } from "@/constants/data";
+import { languages, settings } from "@/constants/data";
 import icons from "@/constants/icons";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import { router } from "expo-router";
-import React, { useCallback, useMemo, useRef } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { SafeAreaView, ScrollView, Text, View } from "react-native";
 
 const SettingsScreen = () => {
+  const [language, selectedLanguage] = useState("");
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoint = useMemo(() => ["30%"], []);
   const handlePresentModal = () => bottomSheetRef.current?.present();
@@ -74,11 +76,23 @@ const SettingsScreen = () => {
           index={1}
           ref={bottomSheetRef}
           renderBackdrop={renderBackdrop}
+          className="p-0 pb-3 px-6"
         >
-          <View className="flex-1 justify-between">
+          <View className="flex-1  gap-4">
+            <Text className="text-2xl font-rubik font-bold">
+              Select Language
+            </Text>
+            <Radio
+              options={languages}
+              checkedValue={language}
+              onChange={selectedLanguage}
+            />
+
+            <View className="flex-1" />
             <PrimaryButton
               title="Save Changes"
               className="h-12 bg-secondary-100"
+              textClassName="text-lg font-rubik-semibold"
             />
           </View>
         </CustomBottomSheetModal>

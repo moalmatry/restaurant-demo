@@ -1,6 +1,5 @@
 import { Href } from "expo-router";
 import icons from "./icons";
-import { RadioButtonProps } from "react-native-radio-buttons-group";
 export interface ISettings {
   title: string;
   icon: any;
@@ -38,15 +37,17 @@ export const settings: Array<ISettings> = [
   // },
 ];
 
-export const languages: RadioButtonProps[] = [
+export const languages = [
   {
     id: "1",
     label: "Arabic",
     value: "ar",
+    icon: icons.egypt,
   },
   {
     id: "2",
     label: "English",
     value: "en",
+    icon: icons.us,
   },
 ];

@@ -1,7 +1,7 @@
+import { cn } from "@/util";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import React, { forwardRef, useCallback, useMemo } from "react";
-import { StyleSheet } from "react-native";
 
 interface Props {
   children: React.ReactNode;
@@ -9,6 +9,7 @@ interface Props {
   renderBackdrop?: (prop: BottomSheetDefaultBackdropProps) => React.JSX.Element;
   enablePanDownToClose?: boolean;
   snapPoints?: string[];
+  className?: string;
 }
 type Ref = BottomSheetModal;
 
@@ -20,6 +21,7 @@ const CustomBottomSheetModal = forwardRef<Ref, Props>(
       renderBackdrop,
       snapPoints,
       enablePanDownToClose = false,
+      className,
     },
     ref
   ) => {
@@ -71,7 +73,7 @@ const CustomBottomSheetModal = forwardRef<Ref, Props>(
         backdropComponent={renderBackdrop}
         handleIndicatorStyle={{ backgroundColor: "#fff" }}
       >
-        <BottomSheetView style={styles.contentContainer}>
+        <BottomSheetView className={cn("flex-1 p-3", className)}>
           {children}
         </BottomSheetView>
       </BottomSheetModal>
@@ -82,17 +84,3 @@ const CustomBottomSheetModal = forwardRef<Ref, Props>(
 CustomBottomSheetModal.displayName = "CustomBottomSheetModal";
 
 export default CustomBottomSheetModal;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#DDD",
-    paddingVertical: 50,
-    gap: 8,
-  },
-  contentContainer: {
-    flex: 1,
-    padding: 12,
-    // alignItems: "center",
-  },
-});
