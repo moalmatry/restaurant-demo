@@ -1,9 +1,10 @@
 import Separator from "@/components/Separator";
+import CardLayout from "@/components/ui/CardLayout";
 import { black, Colors } from "@/constants";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import OrderCardButton from "../../SecondaryButton";
 import Time from "./components/Time";
 import WaiterName from "./components/WaiterName";
@@ -16,6 +17,7 @@ interface SecondaryButtonProps {
   pickupButtonStatus: "active" | "disabled";
   smsButtonHandler: () => void;
   pickupButtonHandler: () => void;
+  onPress?: () => void;
 }
 
 const SecondaryButton = ({
@@ -26,9 +28,10 @@ const SecondaryButton = ({
   smsButtonHandler,
   smsButtonStatus,
   waiterName,
+  onPress,
 }: SecondaryButtonProps) => {
   return (
-    <TouchableOpacity className="w-[338px] h-[141px] bg-white mt-5 rounded-lg shadow-lg px-4 py-3 gap-2">
+    <CardLayout onPress={onPress}>
       <WaiterName name={waiterName} />
       <Time time={orderTime} orderStatus={orderStatus} />
       <Separator />
@@ -67,7 +70,7 @@ const SecondaryButton = ({
           }
         />
       </View>
-    </TouchableOpacity>
+    </CardLayout>
   );
 };
 

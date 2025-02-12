@@ -1,4 +1,5 @@
 import OrderCard from "@/components/HomeScreen/OrderCard";
+import { router } from "expo-router";
 import React from "react";
 import { SafeAreaView } from "react-native";
 
@@ -13,6 +14,9 @@ const HomeScreen = () => {
         smsButtonHandler={() => {}}
         smsButtonStatus="disabled"
         waiterName="S42"
+        onPress={() => {
+          router.push("/(root)/order-details/test");
+        }}
       />
       <OrderCard
         orderStatus="Pickup"

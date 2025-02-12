@@ -36,6 +36,7 @@ import edit from "@/assets/icons/edit.png";
 import settings from "@/assets/icons/setting.png";
 import us from "@/assets/icons/us-icon.png";
 import egypt from "@/assets/icons/egypt.png";
+import price from "@/assets/icons/price.png";
 export default {
   us,
   egypt,
@@ -75,4 +76,5 @@ export default {
   wifi,
   location,
   edit,
+  price,
 };
