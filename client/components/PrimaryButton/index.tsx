@@ -1,4 +1,4 @@
-import { cn } from "@/util";
+import { capitalizeFirstLetter, cn } from "@/util";
 import React from "react";
 import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
 
@@ -34,7 +34,7 @@ const PrimaryButton = ({
             textClassName
           )}
         >
-          {title}
+          {capitalizeFirstLetter(title)}
         </Text>
       )}
     </TouchableOpacity>

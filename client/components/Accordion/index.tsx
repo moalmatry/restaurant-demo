@@ -9,12 +9,14 @@ import { Text, View } from "react-native";
 import AccordionCard from "./components/AccordionCard";
 import Separator from "../Separator";
 import images from "@/constants/images";
+import { useTranslation } from "react-i18next";
 
-interface AccordionProps {
-  title: string;
-}
+// interface AccordionProps {
+//   title: string;
+// }
 
-const AccordionA = ({ title }: AccordionProps) => {
+const AccordionA = () => {
+  const { t } = useTranslation();
   return (
     <View className="bg-white mt-5 rounded-lg shadow-lg px-4 py-3 h-auto w-[355px]">
       <Accordion
@@ -26,7 +28,7 @@ const AccordionA = ({ title }: AccordionProps) => {
         <AccordionItem value="item-1">
           <AccordionTrigger>
             <Text className="text-xl font-rubik font-semibold gap-2">
-              Item Details (3)
+              {t("orderDetailsScreen.itemDetails", { number: 3 })}
             </Text>
           </AccordionTrigger>
           <AccordionContent>
@@ -47,7 +49,7 @@ const AccordionA = ({ title }: AccordionProps) => {
                 },
               ]}
               price="600"
-              title={"Cheesy Buffalo Burger (2) "}
+              title={"Cheesy Buffalo Burger (2)"}
               notes="Please make sure to remove onions from one of the sandwiches"
             />
             <Separator />

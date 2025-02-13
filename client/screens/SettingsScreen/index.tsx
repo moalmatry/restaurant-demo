@@ -10,9 +10,11 @@ import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import { router } from "expo-router";
 import React, { useCallback, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 
 const SettingsScreen = () => {
+  const { t } = useTranslation();
   const [language, selectedLanguage] = useState("");
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoint = useMemo(() => ["30%"], []);
@@ -29,7 +31,7 @@ const SettingsScreen = () => {
     []
   );
   return (
-    <SafeAreaView className="h-full bg-gray-100">
+    <SafeAreaView className="h-full bg-gray-100 ">
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerClassName="pb-32 px-7"
@@ -43,8 +45,14 @@ const SettingsScreen = () => {
         />
 
         <View className="flex flex-col mt-10">
-          <SettingItem icon={icons.calendar} title="My Bookings" />
-          <SettingItem icon={icons.wallet} title="payments" />
+          <SettingItem
+            icon={icons.calendar}
+            title={t("settingsScreen.myBookings")}
+          />
+          <SettingItem
+            icon={icons.wallet}
+            title={t("settingsScreen.payment")}
+          />
         </View>
         <View className="flex flex-col mt-5 border-t pt-5 border-primary-200">
           {settings.map((item, index) => (
@@ -59,13 +67,13 @@ const SettingsScreen = () => {
         <View className="flex flex-col mt-5 border-t pt-5 border-primary-200">
           <SettingItem
             icon={icons.languages}
-            title="Change Language"
+            title={t("settingsScreen.changeLanguage")}
             showArrow={false}
             onPress={handlePresentModal}
           />
           <SettingItem
             icon={icons.logout}
-            title="logout"
+            title={t("settingsScreen.logout")}
             textStyle="text-danger"
             showArrow={false}
           />
@@ -80,7 +88,7 @@ const SettingsScreen = () => {
         >
           <View className="flex-1  gap-4">
             <Text className="text-2xl font-rubik font-bold">
-              Select Language
+              {t("settingsScreen.selectLanguage")}
             </Text>
             <Radio
               options={languages}

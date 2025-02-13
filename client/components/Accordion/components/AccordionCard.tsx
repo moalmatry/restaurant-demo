@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, ImageSourcePropType, Text, View } from "react-native";
 interface AccordionCardProps {
   title: string;
@@ -14,6 +15,8 @@ const AccordionCard = ({
   notes,
   image,
 }: AccordionCardProps) => {
+  const { t } = useTranslation();
+
   return (
     <View className="flex-row">
       <Image width={46} height={46} source={image} />
@@ -25,11 +28,15 @@ const AccordionCard = ({
             </View>
             <View className="flex-row">
               <Text className="text-[14px] font-rubik-semibold">{price}</Text>
-              <Text className="text-[14px] font-rubik-light">EGP</Text>
+              <Text className="text-[14px] font-rubik-light">
+                {t("orderDetailsScreen.egp")}
+              </Text>
             </View>
           </View>
           <Text className="font-rubik-light text-black-200">
-            {extras ? "Extras:" : "No Extras"}
+            {extras
+              ? t("orderDetailsScreen.extras")
+              : t("orderDetailsScreen.noExtras")}
           </Text>
           {extras && (
             <View className="gap-2">
@@ -37,12 +44,16 @@ const AccordionCard = ({
                 <View key={index} className="flex-row justify-between">
                   <View>
                     <Text className={`text-sm font-rubik`}>
-                      Extra {extra.title}
+                      {t("orderDetailsScreen.extras")}
+                      {extra.title}
                     </Text>
                   </View>
                   <View className="flex-row gap-0.5">
                     <Text className="text-sm font-rubik">{extra.price}</Text>
-                    <Text className="text-sm font-rubik-light">EGP</Text>
+                    <Text className="text-sm font-rubik-light">
+                      {" "}
+                      {t("orderDetailsScreen.egp")}
+                    </Text>
                   </View>
                 </View>
               ))}

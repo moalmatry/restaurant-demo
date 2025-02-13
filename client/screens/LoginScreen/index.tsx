@@ -9,9 +9,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
+
+import { useTranslation } from "react-i18next";
 import { SafeAreaView, Text, View } from "react-native";
 
 const LoginScreen = () => {
+  const { t } = useTranslation();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoint = useMemo(() => ["55%"], []);
   const {
@@ -54,18 +57,23 @@ const LoginScreen = () => {
           <View>
             <View className="flex-row items-center gap-2">
               <Feather name="phone" size={16} color="black" />
-              <Text className="text-[16px] font-rubik">Phone Number</Text>
+              <Text className="text-[16px] font-rubik">
+                {t("loginScreen.phoneNumber")}
+              </Text>
             </View>
             <View>
               <Input
                 name="phone"
                 control={control}
-                placeholder="Please enter your phone number"
+                placeholder={t("loginScreen.placeHolder")}
                 error={errors.phone?.message}
               />
             </View>
           </View>
-          <PrimaryButton onPress={handleSubmit(onSubmit)} title="Login" />
+          <PrimaryButton
+            onPress={handleSubmit(onSubmit)}
+            title={t("loginScreen.login")}
+          />
         </View>
       </CustomBottomSheetModal>
     </SafeAreaView>

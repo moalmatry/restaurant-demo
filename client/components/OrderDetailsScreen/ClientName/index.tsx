@@ -3,6 +3,7 @@ import Feather from "@expo/vector-icons/Feather";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { openURL } from "expo-linking";
+import { useTranslation } from "react-i18next";
 
 interface ClientNameProps {
   name: string;
@@ -10,11 +11,12 @@ interface ClientNameProps {
 }
 
 const ClientName = ({ name, phone }: ClientNameProps) => {
+  const { t } = useTranslation();
   return (
     <CardLayout className="h-auto flex-row justify-between shadow-black shadow-2xl w-[355px]">
       <View>
         <Text className="text-xl font-rubik font-semibold">
-          Client Name Order
+          {t("orderDetailsScreen.clientNameOrder")}
         </Text>
         <Text className="font-rubik-light text-black-200">{name}</Text>
       </View>

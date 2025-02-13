@@ -13,7 +13,7 @@ const OrderDetailsScreen = () => {
       <ClientName name="TX-1231" phone="+201069605541" />
       <OrderStatus />
       {/* <CardLayout className="h-auto w-[355px]"></CardLayout> */}
-      <Accordion title="Cheesy Buffalo Burger (2) " />
+      <Accordion />
     </SafeAreaView>
   );
 };

@@ -1,24 +1,24 @@
 import { Href } from "expo-router";
 import icons from "./icons";
+import i18nLocale from "@/lib/locales/i18n";
 export interface ISettings {
   title: string;
   icon: any;
   href: Href;
 }
-
 export const settings: Array<ISettings> = [
   {
-    title: "Personal Details",
+    title: i18nLocale.t("settingsScreen.personalDetails"),
     icon: icons.person,
     href: "/(root)/(tabs)/(top-tabs)",
   },
   {
-    title: "Notifications",
+    title: i18nLocale.t("settingsScreen.notifications"),
     icon: icons.bell,
     href: "/",
   },
   {
-    title: "Security",
+    title: i18nLocale.t("settingsScreen.security"),
     icon: icons.shield,
     href: "/(root)/(tabs)/(top-tabs)",
   },
@@ -27,7 +27,7 @@ export const settings: Array<ISettings> = [
   //   icon: icons.language,
   // },
   {
-    title: "Help Center",
+    title: i18nLocale.t("settingsScreen.helpCenter"),
     icon: icons.info,
     href: "/(root)/(tabs)/(top-tabs)",
   },

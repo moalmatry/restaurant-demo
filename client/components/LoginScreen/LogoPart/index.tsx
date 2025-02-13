@@ -1,8 +1,10 @@
 import images from "@/constants/images";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, ImageBackground, Text, View } from "react-native";
 
 const LogoPart = () => {
+  const { t } = useTranslation();
   return (
     <>
       <ImageBackground
@@ -17,7 +19,7 @@ const LogoPart = () => {
           source={images.ezLogo}
         />
         <Text className="text-white font-rubik text-lg text-center">
-          Login to get started with a seamless restaurant management experience
+          {t("loginScreen.title")}
         </Text>
       </View>
     </>

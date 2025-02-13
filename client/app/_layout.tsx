@@ -5,10 +5,12 @@ import React, { useEffect } from "react";
 import "./global.css";
 // import GlobalProvider from "@/lib/global-provider";
 
-import Toast from "react-native-toast-message";
-import SessionProvider from "@/providers/session-provider";
-import ReduxProvider from "@/providers/redux-provider";
 import BottomSheetProvider from "@/providers/bottom-sheet-provider";
+import ReduxProvider from "@/providers/redux-provider";
+import SessionProvider from "@/providers/session-provider";
+import Toast from "react-native-toast-message";
+import "../lib/locales/i18n";
+import { I18nManager } from "react-native";
 
 const Layout = () => {
   const [fontsLoaded] = useFonts({
@@ -21,10 +23,12 @@ const Layout = () => {
   });
 
   useEffect(() => {
+    I18nManager.allowRTL(true);
+
     if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, I18nManager]);
 
   if (!fontsLoaded) {
     return null;
@@ -34,6 +38,7 @@ const Layout = () => {
     <ReduxProvider>
       <SessionProvider>
         <BottomSheetProvider>
+          {/* <I18nextProvider i18n={i18next}> */}
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen
               options={{
@@ -51,6 +56,7 @@ const Layout = () => {
             <Stack.Screen name="(root)" />
           </Stack>
           <Toast />
+          {/* </I18nextProvider> */}
         </BottomSheetProvider>
       </SessionProvider>
     </ReduxProvider>

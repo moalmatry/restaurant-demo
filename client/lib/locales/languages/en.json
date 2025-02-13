@@ -1,0 +1,53 @@
+{
+  "welcome": "Welcome Mohamed",
+  "greeting": "Hello, {{name}}!",
+  "loginScreen": {
+    "title": "Login to get started with a seamless restaurant management experience",
+    "phoneNumber": "Phone Number",
+    "placeHolder": "Please enter your phone number",
+    "login": "Login"
+  },
+  "ConfirmationCodeScreen": {
+    "titleOne": "We have sent a 4 digit code to your phone number",
+    "titleTwo": " ,please add it blow to continue",
+    "didNotReceive": "Didn't receive code?",
+    "resend": "Resend",
+    "confirmOtp": "Confirm OTP"
+  },
+  "homeScreen": {
+    "home": "Home",
+    "ready": "Ready",
+    "waiterName": "Waiter Name",
+    "pickup": "Pickup",
+    "delivery": "Delivery",
+    "table": "Table",
+    "sendSms": "Send SMS"
+  },
+  "bottomTabs": {
+    "home": "Home",
+    "settings": "Settings"
+  },
+  "orderDetailsScreen": {
+    "orderDetails": "Order Details",
+    "clientNameOrder": "Client Name Order",
+    "orderedAt": "Order At",
+    "orderType": "Order Type",
+    "orderedPrice": "Order Price",
+    "itemDetails": "Item Details {{number}}",
+    "extras": "Extras",
+    "noExtras": "Name Extra",
+    "egp": "EGP",
+    "refund": "Refund"
+  },
+  "settingsScreen": {
+    "myBookings": "My Bookings",
+    "payment": "Payment",
+    "personalDetails": "Personal Details",
+    "notifications": "Notifications",
+    "security": "Security",
+    "helpCenter": "Help Center",
+    "changeLanguage": "Change Language",
+    "selectLanguage": "Select Language",
+    "logout": "Logout"
+  }
+}

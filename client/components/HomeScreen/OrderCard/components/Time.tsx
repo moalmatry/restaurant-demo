@@ -47,7 +47,7 @@ const Time = ({ orderStatus, time }: TimeProps) => {
       </View>
       <View className="flex-row items-center gap-2 ">
         {Icon}
-        <Text className="text-black-300 text-xl">Pickup</Text>
+        <Text className="text-black-300 text-xl">{orderStatus}</Text>
       </View>
     </View>
   );

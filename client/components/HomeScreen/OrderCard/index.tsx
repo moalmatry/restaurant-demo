@@ -8,6 +8,7 @@ import { View } from "react-native";
 import OrderCardButton from "../../SecondaryButton";
 import Time from "./components/Time";
 import WaiterName from "./components/WaiterName";
+import { useTranslation } from "react-i18next";
 
 interface SecondaryButtonProps {
   waiterName: string;
@@ -30,6 +31,7 @@ const SecondaryButton = ({
   waiterName,
   onPress,
 }: SecondaryButtonProps) => {
+  const { t } = useTranslation();
   return (
     <CardLayout onPress={onPress}>
       <WaiterName name={waiterName} />
@@ -38,7 +40,7 @@ const SecondaryButton = ({
       <View className="flex-row justify-between items-center">
         <OrderCardButton
           status={smsButtonStatus}
-          title="Send SMS"
+          title={t("homeScreen.sendSms")}
           onPress={smsButtonHandler}
           Icon={
             <AntDesign
@@ -55,7 +57,7 @@ const SecondaryButton = ({
 
         <OrderCardButton
           status={pickupButtonStatus}
-          title="PickUp"
+          title={t("homeScreen.pickup")}
           onPress={pickupButtonHandler}
           Icon={
             <MaterialIcons

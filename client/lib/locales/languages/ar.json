@@ -1,0 +1,54 @@
+{
+  "welcome": "مرحبا محمد",
+  "greeting": "مرحبًا، {{name}}!",
+  "loginScreen": {
+    "title": "سجل الدخول للبدء في تجربة إدارة مطعم سلسة",
+    "phoneNumber": "رقم الهاتف",
+    "placeHolder": "يرجى إدخال رقم هاتفك",
+    "login": "تسجيل الدخول"
+  },
+  "ConfirmationCodeScreen": {
+    "titleOne": "لقد أرسلنا رمزًا مكونًا من 4 أرقام إلى رقم هاتفك",
+    "titleTwo": "، يرجى إضافته أدناه للاستمرار",
+    "didNotReceive": "لم تستلم الرمز؟",
+    "resend": "إعادة الإرسال",
+    "confirmOtp": "تأكيد OTP"
+  },
+  "homeScreen": {
+    "home": "الرئيسية",
+    "ready": "جاهز",
+    "waiterName": "اسم النادل",
+    "pickup": "استلام",
+    "delivery": "توصيل",
+    "table": "طاولة",
+    "sendSms": "إرسال رسالة نصية"
+  },
+  "bottomTabs": {
+    "home": "الرئيسية",
+    "settings": "الإعدادات"
+  },
+  "orderDetailsScreen": {
+    "orderDetails": "تفاصيل الطلب",
+    "clientNameOrder": "طلب اسم العميل",
+    "orderedAt": "طلب في",
+    "orderType": "نوع الطلب",
+    "orderedPrice": "سعر الطلب",
+    "itemDetails": "تفاصيل العنصر {{number}}",
+    "extras": "إضافات",
+    "noExtras": "بلا اضافات",
+
+    "egp": "جنيه",
+    "refund": "استرداد"
+  },
+  "settingsScreen": {
+    "myBookings": "حجوزاتي",
+    "payment": "الدفع",
+    "personalDetails": "البيانات الشخصية",
+    "notifications": "الإشعارات",
+    "security": "الأمان",
+    "helpCenter": "مركز المساعدة",
+    "changeLanguage": "تغيير اللغة",
+    "selectLanguage": "تغير اللغة",
+    "logout": "تسجيل الخروج"
+  }
+}

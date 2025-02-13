@@ -5,18 +5,20 @@ import { AntDesign, Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { Image } from "react-native";
 import Status from "./components";
+import { useTranslation } from "react-i18next";
 
 const OrderStatus = () => {
+  const { t } = useTranslation();
   return (
     <CardLayout className="h-auto w-[355px]">
       <Status
-        firstTitle="Ordered At"
-        secondTitle="02:00 PM"
+        firstTitle={t("orderDetailsScreen.orderedAt")}
+        secondTitle="02:00"
         icon={<AntDesign name="clockcircleo" size={16} color={black[200]} />}
       />
       <Status
-        firstTitle="Ordered Type"
-        secondTitle="Pickup"
+        firstTitle={t("orderDetailsScreen.orderType")}
+        secondTitle={t("homeScreen.pickup")}
         icon={
           <Ionicons
             name="checkbox-outline"
@@ -27,8 +29,8 @@ const OrderStatus = () => {
         }
       />
       <Status
-        firstTitle="Ordered Price"
-        secondTitle="2000 EGP"
+        firstTitle={t("orderDetailsScreen.orderedPrice")}
+        secondTitle={`2000 ${t("orderDetailsScreen.egp")}`}
         icon={<Image source={icons.price} />}
       />
     </CardLayout>

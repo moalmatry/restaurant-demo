@@ -1,8 +1,10 @@
 import { Colors } from "@/constants";
 import { MaterialTopTabs } from "@/navigation/top-tabs";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const TopTabsStack = () => {
+  const { t } = useTranslation();
   // const { loading, isLoggedIn } = useGlobalContext();
 
   // if (loading) {
@@ -24,13 +26,13 @@ const TopTabsStack = () => {
       <MaterialTopTabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: t("homeScreen.home"),
         }}
       />
       <MaterialTopTabs.Screen
         name="ready"
         options={{
-          title: "Ready",
+          title: t("homeScreen.ready"),
         }}
       />
     </MaterialTopTabs>

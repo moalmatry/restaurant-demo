@@ -2,8 +2,10 @@ import Header from "@/components/Header";
 import PrimaryButton from "@/components/PrimaryButton";
 import { Stack } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const AppLayout = () => {
+  const { t } = useTranslation();
   // const { loading, isLoggedIn } = useGlobalContext();
 
   // if (loading) {
@@ -16,6 +18,7 @@ const AppLayout = () => {
       <Stack.Screen
         name="order-details/[id]"
         options={{
+          animation: "slide_from_right",
           headerShown: true,
           header: () => (
             <Header
@@ -24,10 +27,10 @@ const AppLayout = () => {
                 <PrimaryButton
                   textClassName="text-lg"
                   className="p-0 w-[125px] h-[35px]"
-                  title="Refund"
+                  title={t("orderDetailsScreen.refund")}
                 />
               }
-              rightTitle="Order Details"
+              rightTitle={t("orderDetailsScreen.orderDetails")}
             />
           ),
         }}

@@ -3,8 +3,10 @@ import TobTabsHeader from "@/components/TopTabsHeader";
 import icons from "@/constants/icons";
 import { Tabs } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const TabsLayout = () => {
+  const { t } = useTranslation();
   return (
     <Tabs
       screenOptions={{
@@ -31,11 +33,16 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="(top-tabs)"
         options={{
+          animation: "shift",
           headerShown: true,
           headerShadowVisible: false,
           header: () => <TobTabsHeader />,
           tabBarIcon: ({ focused }) => (
-            <TabIcon icon={icons.homeSmile} focused={focused} title="Home" />
+            <TabIcon
+              icon={icons.homeSmile}
+              focused={focused}
+              title={t("bottomTabs.home")}
+            />
           ),
         }}
       />
@@ -43,9 +50,14 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="settings"
         options={{
+          animation: "shift",
           title: "Settings",
           tabBarIcon: ({ focused }) => (
-            <TabIcon icon={icons.settings} focused={focused} title="Settings" />
+            <TabIcon
+              icon={icons.settings}
+              focused={focused}
+              title={t("bottomTabs.settings")}
+            />
           ),
         }}
       />

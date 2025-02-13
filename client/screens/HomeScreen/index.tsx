@@ -1,13 +1,16 @@
 import OrderCard from "@/components/HomeScreen/OrderCard";
 import { router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { SafeAreaView } from "react-native";
 
 const HomeScreen = () => {
+  const { t } = useTranslation();
+  // const delivery = ;
   return (
     <SafeAreaView className="flex-1 bg-gray-100 items-center">
       <OrderCard
-        orderStatus="Delivery"
+        orderStatus={t("homeScreen.delivery") as "Delivery"}
         orderTime="20:10"
         pickupButtonHandler={() => {}}
         pickupButtonStatus="active"
@@ -19,7 +22,7 @@ const HomeScreen = () => {
         }}
       />
       <OrderCard
-        orderStatus="Pickup"
+        orderStatus={t("homeScreen.pickup") as "Pickup"}
         orderTime="10:10"
         pickupButtonHandler={() => {}}
         pickupButtonStatus="disabled"
@@ -28,7 +31,7 @@ const HomeScreen = () => {
         waiterName="TX-1231"
       />
       <OrderCard
-        orderStatus="Table"
+        orderStatus={t("homeScreen.table") as "Table"}
         orderTime="7:00"
         pickupButtonHandler={() => {}}
         pickupButtonStatus="disabled"
