@@ -13,6 +13,11 @@ export type TranslationKeys = keyof typeof en;
 //   return locales[0]?.languageTag || "en";
 // };
 
+// Change Language
+export const setLocale = (locale: string) => {
+  i18nLocale.changeLanguage(locale);
+};
+
 // Initialize i18next
 i18nLocale.use(initReactI18next).init({
   compatibilityJSON: "v4",

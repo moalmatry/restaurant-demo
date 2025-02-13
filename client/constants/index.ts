@@ -38,4 +38,6 @@ export const ID_KEY = "ID";
 export const TOKEN_KEY = "TOKEN";
 export const NAME_KEY = "NAME";
 export const PROFILE_IMG_KEY = "PROFILE_IMG";
+export const LANGUAGE = "LANGUAGE";
+export const Direction = "Direction";
 export const API_LINK = "http://192.168.1.7:7000/api/v1";

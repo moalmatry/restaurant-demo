@@ -11,6 +11,10 @@ import SessionProvider from "@/providers/session-provider";
 import Toast from "react-native-toast-message";
 import "../lib/locales/i18n";
 import { I18nManager } from "react-native";
+import { getLocales } from "expo-localization";
+import { readData } from "@/lib/locale-storage/readData";
+import { LANGUAGE } from "@/constants";
+import { setLocale } from "../lib/locales/i18n";
 
 const Layout = () => {
   const [fontsLoaded] = useFonts({
@@ -23,11 +27,23 @@ const Layout = () => {
   });
 
   useEffect(() => {
-    I18nManager.allowRTL(true);
+    const loadResources = async () => {
+      const deviceLanguage = getLocales()[0].languageCode;
+      const storedLanguage = await readData(LANGUAGE);
+      if (storedLanguage) {
+        setLocale(storedLanguage);
+      } else {
+        setLocale(deviceLanguage ?? "en");
+      }
 
-    if (fontsLoaded) {
-      SplashScreen.hideAsync();
-    }
+      I18nManager.allowRTL(true);
+
+      if (fontsLoaded) {
+        SplashScreen.hideAsync();
+      }
+    };
+
+    loadResources();
   }, [fontsLoaded, I18nManager]);
 
   if (!fontsLoaded) {

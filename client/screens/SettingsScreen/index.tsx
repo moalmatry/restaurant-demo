@@ -4,18 +4,27 @@ import PrimaryButton from "@/components/PrimaryButton";
 import ProfileImage from "@/components/ProfileScreen/ProfileImage";
 import Radio from "@/components/Radio";
 import SettingItem from "@/components/SettingItem";
-import { languages, settings } from "@/constants/data";
+import { LANGUAGE } from "@/constants";
+import { languages } from "@/constants/data";
 import icons from "@/constants/icons";
+import { storeData } from "@/lib/locale-storage/storeData";
+import { setLocale } from "@/lib/locales/i18n";
+import { SupportedLocales } from "@/store/features/locale/locale-slice";
+import { useAppSelector } from "@/store/store";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
-import { router } from "expo-router";
+import * as Updates from "expo-updates";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 
 const SettingsScreen = () => {
+  const currentLanguage = useAppSelector(
+    (state) => state.locale.currentLanguage
+  );
+  const [language, selectedLanguage] =
+    useState<SupportedLocales>(currentLanguage);
   const { t } = useTranslation();
-  const [language, selectedLanguage] = useState("");
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoint = useMemo(() => ["30%"], []);
   const handlePresentModal = () => bottomSheetRef.current?.present();
@@ -30,13 +39,20 @@ const SettingsScreen = () => {
     ),
     []
   );
+
+  const changeLanguageHandler = async () => {
+    setLocale(language);
+    await storeData(LANGUAGE, language);
+    await Updates.reloadAsync();
+  };
+
   return (
     <SafeAreaView className="h-full bg-gray-100 ">
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerClassName="pb-32 px-7"
       >
-        <Header title="" />
+        <Header />
         <ProfileImage
           name={"Restaurant Name"}
           profileImage={
@@ -54,7 +70,7 @@ const SettingsScreen = () => {
             title={t("settingsScreen.payment")}
           />
         </View>
-        <View className="flex flex-col mt-5 border-t pt-5 border-primary-200">
+        {/* <View className="flex flex-col mt-5 border-t pt-5 border-primary-200">
           {settings.map((item, index) => (
             <SettingItem
               key={index}
@@ -62,7 +78,7 @@ const SettingsScreen = () => {
               {...item}
             />
           ))}
-        </View>
+        </View> */}
 
         <View className="flex flex-col mt-5 border-t pt-5 border-primary-200">
           <SettingItem
@@ -101,6 +117,7 @@ const SettingsScreen = () => {
               title="Save Changes"
               className="h-12 bg-secondary-100"
               textClassName="text-lg font-rubik-semibold"
+              onPress={changeLanguageHandler}
             />
           </View>
         </CustomBottomSheetModal>

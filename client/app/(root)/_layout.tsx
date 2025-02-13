@@ -1,17 +1,28 @@
 import Header from "@/components/Header";
 import PrimaryButton from "@/components/PrimaryButton";
+import i18nLocale from "@/lib/locales/i18n";
+import {
+  setCurrentLocale,
+  SupportedLocales,
+} from "@/store/features/locale/locale-slice";
+import { useAppDispatch } from "@/store/store";
 import { Stack } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const AppLayout = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
   // const { loading, isLoggedIn } = useGlobalContext();
 
   // if (loading) {
   //   return <LoadingScreen />;
   // }
 
+  useEffect(() => {
+    dispatch(setCurrentLocale(i18nLocale.language as SupportedLocales));
+  }, []);
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />

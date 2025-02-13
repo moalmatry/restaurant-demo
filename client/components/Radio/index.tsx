@@ -9,6 +9,7 @@ import React from "react";
 import { cn } from "@/util";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Colors } from "@/constants";
+import { SupportedLocales } from "@/store/features/locale/locale-slice";
 interface RadioProps {
   options: {
     id: string;
@@ -16,7 +17,7 @@ interface RadioProps {
     value: string;
     icon?: ImageSourcePropType;
   }[];
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: React.Dispatch<React.SetStateAction<SupportedLocales>>;
   checkedValue: string;
 }
 
@@ -30,7 +31,7 @@ const Radio = ({ options, onChange, checkedValue }: RadioProps) => {
             className={cn("flex-row w-full justify-between")}
             key={option.id}
             onPress={() => {
-              onChange(option.value);
+              onChange(option.value as SupportedLocales);
             }}
           >
             <View className="flex-row gap-2 items-center">
