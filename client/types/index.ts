@@ -1,12 +1,10 @@
-import { AuthStateType } from "@/context/AuthContext";
-
 export type Role = "ADMIN" | "USER" | "EMPLOYEE";
 export interface User {
   id: string;
   name: string;
   slug?: string;
   email: string;
-  phone?: string;
+  phone: string;
   profileImg?: string;
   password?: string;
   passwordChangedAt?: Date;
@@ -81,12 +79,10 @@ export interface Register {
 }
 export interface RegisterProps {
   userData: Register;
-  setState: React.Dispatch<React.SetStateAction<AuthStateType>>;
 }
 
 export interface ResetPasswordProps {
   userData: { resetCode: string; password: string; confirmPassword: string };
-  setState: React.Dispatch<React.SetStateAction<AuthStateType>>;
 }
 
 export interface ResetPasswordResponse extends Response {

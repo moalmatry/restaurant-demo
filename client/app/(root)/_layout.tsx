@@ -1,18 +1,14 @@
 import Header from "@/components/Header";
 import PrimaryButton from "@/components/PrimaryButton";
 import i18nLocale from "@/lib/locales/i18n";
-import {
-  setCurrentLocale,
-  SupportedLocales,
-} from "@/store/features/locale/locale-slice";
-import { useAppDispatch } from "@/store/store";
+import { setDir } from "@/util";
 import { Stack } from "expo-router";
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
 const AppLayout = () => {
+  const dir = i18nLocale.dir();
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
 
   // const { loading, isLoggedIn } = useGlobalContext();
 
@@ -20,9 +16,6 @@ const AppLayout = () => {
   //   return <LoadingScreen />;
   // }
 
-  useEffect(() => {
-    dispatch(setCurrentLocale(i18nLocale.language as SupportedLocales));
-  }, []);
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />
@@ -33,7 +26,7 @@ const AppLayout = () => {
           headerShown: true,
           header: () => (
             <Header
-              className="bg-gray-100 px-4"
+              className={`bg-gray-100 px-4 ${setDir(dir)}`}
               left={
                 <PrimaryButton
                   textClassName="text-lg"

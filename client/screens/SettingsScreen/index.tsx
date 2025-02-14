@@ -8,9 +8,9 @@ import { LANGUAGE } from "@/constants";
 import { languages } from "@/constants/data";
 import icons from "@/constants/icons";
 import { storeData } from "@/lib/locale-storage/storeData";
-import { setLocale } from "@/lib/locales/i18n";
+import i18nLocale, { setLocale } from "@/lib/locales/i18n";
 import { SupportedLocales } from "@/store/features/locale/locale-slice";
-import { useAppSelector } from "@/store/store";
+import { setDir, setRotateDir, setTextDir } from "@/util";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import * as Updates from "expo-updates";
@@ -19,11 +19,10 @@ import { useTranslation } from "react-i18next";
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 
 const SettingsScreen = () => {
-  const currentLanguage = useAppSelector(
-    (state) => state.locale.currentLanguage
+  const dir = i18nLocale.dir();
+  const [language, selectedLanguage] = useState<SupportedLocales>(
+    i18nLocale.language as SupportedLocales
   );
-  const [language, selectedLanguage] =
-    useState<SupportedLocales>(currentLanguage);
   const { t } = useTranslation();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoint = useMemo(() => ["30%"], []);
@@ -52,7 +51,7 @@ const SettingsScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerClassName="pb-32 px-7"
       >
-        <Header />
+        <Header className={`${setDir(dir)}`} />
         <ProfileImage
           name={"Restaurant Name"}
           profileImage={
@@ -92,6 +91,7 @@ const SettingsScreen = () => {
             title={t("settingsScreen.logout")}
             textStyle="text-danger"
             showArrow={false}
+            classNameIcon={setRotateDir(dir)}
           />
         </View>
 
@@ -102,8 +102,10 @@ const SettingsScreen = () => {
           renderBackdrop={renderBackdrop}
           className="p-0 pb-3 px-6"
         >
-          <View className="flex-1  gap-4">
-            <Text className="text-2xl font-rubik font-bold">
+          <View className="flex-1 gap-4 ">
+            <Text
+              className={`text-2xl font-rubik font-bold ${setTextDir(dir)}`}
+            >
               {t("settingsScreen.selectLanguage")}
             </Text>
             <Radio
@@ -114,7 +116,7 @@ const SettingsScreen = () => {
 
             <View className="flex-1" />
             <PrimaryButton
-              title="Save Changes"
+              title={t("settingsScreen.saveChanges")}
               className="h-12 bg-secondary-100"
               textClassName="text-lg font-rubik-semibold"
               onPress={changeLanguageHandler}

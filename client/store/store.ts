@@ -5,14 +5,12 @@ import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { productApi } from "@/services/dummyData";
 import authReducer from "./features/auth/auth-slice";
-import localeReducer from "./features/locale/locale-slice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     person: personReducer,
     auth: authReducer,
-    locale: localeReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

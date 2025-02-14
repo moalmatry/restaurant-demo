@@ -1,4 +1,5 @@
 import { black } from "@/constants";
+import { cn } from "@/util";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React from "react";
 import { Control, Controller } from "react-hook-form";
@@ -16,6 +17,7 @@ export interface InputProps {
   iconSize?: number;
   keyboardType?: KeyboardTypeOptions;
   error?: string;
+  className?: string;
 }
 
 const Input = ({
@@ -27,6 +29,7 @@ const Input = ({
   control,
   error,
   keyboardType,
+  className,
 }: InputProps) => {
   return (
     <View>
@@ -49,7 +52,7 @@ const Input = ({
               value={value}
               placeholder={placeholder}
               secureTextEntry={secureTextEntry}
-              className="w-[90%] pl-3 font-rubik"
+              className={cn("w-[90%] pl-3 font-rubik", className)}
               onBlur={onBlur}
             />
           )}

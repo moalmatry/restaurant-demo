@@ -5,15 +5,15 @@ import React, { useEffect } from "react";
 import "./global.css";
 // import GlobalProvider from "@/lib/global-provider";
 
+import { LANGUAGE } from "@/constants";
+import { readData } from "@/lib/locale-storage/readData";
 import BottomSheetProvider from "@/providers/bottom-sheet-provider";
 import ReduxProvider from "@/providers/redux-provider";
 import SessionProvider from "@/providers/session-provider";
+import { getLocales } from "expo-localization";
+import { I18nManager } from "react-native";
 import Toast from "react-native-toast-message";
 import "../lib/locales/i18n";
-import { I18nManager } from "react-native";
-import { getLocales } from "expo-localization";
-import { readData } from "@/lib/locale-storage/readData";
-import { LANGUAGE } from "@/constants";
 import { setLocale } from "../lib/locales/i18n";
 
 const Layout = () => {
@@ -55,7 +55,11 @@ const Layout = () => {
       <SessionProvider>
         <BottomSheetProvider>
           {/* <I18nextProvider i18n={i18next}> */}
-          <Stack screenOptions={{ headerShown: false }}>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
             <Stack.Screen
               options={{
                 animation: "slide_from_right",

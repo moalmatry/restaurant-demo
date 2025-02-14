@@ -25,6 +25,7 @@ i18nLocale.use(initReactI18next).init({
     en: { translation: en },
     ar: { translation: ar },
   },
+
   fallbackLng: "ar",
   interpolation: {
     escapeValue: false,

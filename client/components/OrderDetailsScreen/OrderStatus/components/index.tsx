@@ -1,3 +1,5 @@
+import i18nLocale from "@/lib/locales/i18n";
+import { setDir } from "@/util";
 import React from "react";
 import { Text, View } from "react-native";
 
@@ -8,8 +10,9 @@ interface StatusProps {
 }
 
 const Status = ({ icon, firstTitle, secondTitle }: StatusProps) => {
+  const dir = i18nLocale.dir();
   return (
-    <View className="flex-row justify-between">
+    <View className={`justify-between ${setDir(dir)}`}>
       <View className="flex-row justify-center items-center gap-2">
         {icon}
         <Text className="text-black-200 text-lg font-rubik">{firstTitle}</Text>

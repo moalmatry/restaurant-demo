@@ -10,12 +10,15 @@ import AccordionCard from "./components/AccordionCard";
 import Separator from "../Separator";
 import images from "@/constants/images";
 import { useTranslation } from "react-i18next";
+import i18nLocale from "@/lib/locales/i18n";
+import { setDir } from "@/util";
 
 // interface AccordionProps {
 //   title: string;
 // }
 
 const AccordionA = () => {
+  const dir = i18nLocale.dir();
   const { t } = useTranslation();
   return (
     <View className="bg-white mt-5 rounded-lg shadow-lg px-4 py-3 h-auto w-[355px]">
@@ -26,8 +29,8 @@ const AccordionA = () => {
         className="w-full max-w-sm native:max-w-md"
       >
         <AccordionItem value="item-1">
-          <AccordionTrigger>
-            <Text className="text-xl font-rubik font-semibold gap-2">
+          <AccordionTrigger className={`${setDir(dir)}`}>
+            <Text className="text-xl font-rubik font-semibold gap-2 ">
               {t("orderDetailsScreen.itemDetails", { number: 3 })}
             </Text>
           </AccordionTrigger>

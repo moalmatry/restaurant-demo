@@ -35,6 +35,7 @@ export const Colors = {
 };
 
 export const ID_KEY = "ID";
+export const PHONE_KEY = "PHONE";
 export const TOKEN_KEY = "TOKEN";
 export const NAME_KEY = "NAME";
 export const PROFILE_IMG_KEY = "PROFILE_IMG";

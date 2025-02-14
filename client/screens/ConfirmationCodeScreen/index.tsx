@@ -3,20 +3,26 @@ import CountdownTimer from "@/components/ConfirmationCodeScreen/CountdownTimer";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 import PrimaryButton from "@/components/PrimaryButton";
+import i18nLocale from "@/lib/locales/i18n";
+import { useAppSelector } from "@/store/store";
+import { setTextDir } from "@/util";
 import { router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaView, Text, View } from "react-native";
 
 const ConfirmationCodeScreen = () => {
+  const dir = i18nLocale.dir();
+  const phone = useAppSelector((state) => state.auth.phone);
+
   const { t } = useTranslation();
   return (
     <SafeAreaView className="pb-9 px-6 gap-8 bg-white flex-1">
       <Header href={"/"} title="" />
       <View>
-        <Text className="font-rubik-light">
+        <Text className={`font-rubik-light ${setTextDir(dir)}`}>
           {t("ConfirmationCodeScreen.titleOne")}
-          <Text className="font-rubik-semibold">+966 655 366 112</Text>
+          <Text className="font-rubik-semibold"> {phone} </Text>
           {t("ConfirmationCodeScreen.titleTwo")}
         </Text>
       </View>
@@ -38,7 +44,7 @@ const ConfirmationCodeScreen = () => {
       </View>
       <View className="flex-1" />
       <PrimaryButton
-        onPress={() => router.push("/(root)/(tabs)/(top-tabs)")}
+        onPress={() => router.replace("/(root)/(tabs)/(top-tabs)")}
         title={t("ConfirmationCodeScreen.confirmOtp")}
       />
     </SafeAreaView>

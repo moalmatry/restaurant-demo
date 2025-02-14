@@ -48,6 +48,7 @@
     "helpCenter": "Help Center",
     "changeLanguage": "Change Language",
     "selectLanguage": "Select Language",
+    "saveChanges": "Save Changes",
     "logout": "Logout"
   }
 }
