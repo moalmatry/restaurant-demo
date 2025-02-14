@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native";
 
 const HomeScreen = () => {
   const { t } = useTranslation();
+
   // const delivery = ;
   return (
     <SafeAreaView className="flex-1 bg-gray-100 items-center">

@@ -50,6 +50,10 @@
     "changeLanguage": "تغيير اللغة",
     "selectLanguage": "تغير اللغة",
     "saveChanges": "حفظ التغيرات",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "logoutMessage": "لقد تم تسجيل دخولك بنجاح"
+  },
+  "error": {
+    "general": "حدث خطا حاول في وقت لاحق"
   }
 }

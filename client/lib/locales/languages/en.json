@@ -49,6 +49,10 @@
     "changeLanguage": "Change Language",
     "selectLanguage": "Select Language",
     "saveChanges": "Save Changes",
-    "logout": "Logout"
+    "logout": "Logout",
+    "logoutMessage": "You Logged out successfully"
+  },
+  "error": {
+    "general": "Something went wrong try later"
   }
 }

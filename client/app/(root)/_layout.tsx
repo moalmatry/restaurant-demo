@@ -1,12 +1,15 @@
 import Header from "@/components/Header";
 import PrimaryButton from "@/components/PrimaryButton";
 import i18nLocale from "@/lib/locales/i18n";
+import { useAppSelector } from "@/store/store";
 import { setDir } from "@/util";
-import { Stack } from "expo-router";
-import React from "react";
+import { router, Stack } from "expo-router";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const AppLayout = () => {
+  const token = useAppSelector((state) => state.auth.token);
+
   const dir = i18nLocale.dir();
   const { t } = useTranslation();
 
@@ -15,6 +18,10 @@ const AppLayout = () => {
   // if (loading) {
   //   return <LoadingScreen />;
   // }
+
+  useEffect(() => {
+    if (!token) router.replace("/");
+  }, [token]);
 
   return (
     <Stack screenOptions={{ headerShown: false }}>

@@ -8,6 +8,7 @@ export interface PrimaryButtonProps {
   onPress?: () => void;
   className?: string;
   textClassName?: string;
+  disabled?: boolean;
 }
 
 const PrimaryButton = ({
@@ -16,10 +17,12 @@ const PrimaryButton = ({
   isLoading,
   className,
   textClassName,
+  disabled,
 }: PrimaryButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
+      disabled={disabled}
       className={cn(
         "h-14 bg-primary-100 justify-center flex rounded-full items-center",
         className

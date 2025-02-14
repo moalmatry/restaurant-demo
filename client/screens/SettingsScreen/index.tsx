@@ -9,7 +9,9 @@ import { languages } from "@/constants/data";
 import icons from "@/constants/icons";
 import { storeData } from "@/lib/locale-storage/storeData";
 import i18nLocale, { setLocale } from "@/lib/locales/i18n";
-import { SupportedLocales } from "@/store/features/locale/locale-slice";
+import { logout } from "@/store/features/auth/auth-slice";
+import { useAppDispatch } from "@/store/store";
+
 import { setDir, setRotateDir, setTextDir } from "@/util";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
@@ -17,16 +19,26 @@ import * as Updates from "expo-updates";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
+import Toast from "react-native-toast-message";
 
 const SettingsScreen = () => {
+  const dispatch = useAppDispatch();
   const dir = i18nLocale.dir();
-  const [language, selectedLanguage] = useState<SupportedLocales>(
-    i18nLocale.language as SupportedLocales
-  );
+  const flexRowDir = setDir(dir);
+  const [language, selectedLanguage] = useState(i18nLocale.language);
   const { t } = useTranslation();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoint = useMemo(() => ["30%"], []);
   const handlePresentModal = () => bottomSheetRef.current?.present();
+
+  const logoutHandler = async () => {
+    dispatch(logout());
+    Toast.show({
+      text1: t("settingsScreen.logoutMessage"),
+      type: "success",
+    });
+    await Updates.reloadAsync();
+  };
 
   const renderBackdrop = useCallback(
     (prop: BottomSheetDefaultBackdropProps) => (
@@ -42,7 +54,7 @@ const SettingsScreen = () => {
   const changeLanguageHandler = async () => {
     setLocale(language);
     await storeData(LANGUAGE, language);
-    await Updates.reloadAsync();
+    // await Updates.reloadAsync();
   };
 
   return (
@@ -51,7 +63,7 @@ const SettingsScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerClassName="pb-32 px-7"
       >
-        <Header className={`${setDir(dir)}`} />
+        <Header className={`${flexRowDir}`} />
         <ProfileImage
           name={"Restaurant Name"}
           profileImage={
@@ -91,6 +103,7 @@ const SettingsScreen = () => {
             title={t("settingsScreen.logout")}
             textStyle="text-danger"
             showArrow={false}
+            onPress={logoutHandler}
             classNameIcon={setRotateDir(dir)}
           />
         </View>

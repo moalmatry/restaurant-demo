@@ -1,14 +1,14 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ImageSourcePropType,
-} from "react-native";
-import React from "react";
 import icons from "@/constants/icons";
 import i18nLocale from "@/lib/locales/i18n";
-import { cn, setDir, setRotateDir } from "@/util";
+import { cn } from "@/util";
+import React from "react";
+import {
+  Image,
+  ImageSourcePropType,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 interface SettingItemProps {
   icon: ImageSourcePropType;
@@ -29,12 +29,13 @@ const SettingItem = ({
 }: SettingItemProps) => {
   const dir = i18nLocale.dir();
 
+  if (!dir) return;
   return (
     <TouchableOpacity
       onPress={onPress}
-      className={`flex flex-row items-center justify-between py-3 ${setDir(
-        dir
-      )}`}
+      className={`${
+        dir === "rtl" ? "flex-row-reverse" : "flex-row"
+      } items-center justify-between py-3 `}
     >
       <View className="flex flex-row items-center gap-3">
         <Image className={cn("size-6", classNameIcon)} source={icon} />
@@ -47,7 +48,7 @@ const SettingItem = ({
       {showArrow && (
         <Image
           source={icons.rightArrow}
-          className={`size-5 ${setRotateDir(dir)}`}
+          className={`size-6 ${dir === "rtl" ? "rotate-180" : ""}`}
         />
       )}
     </TouchableOpacity>

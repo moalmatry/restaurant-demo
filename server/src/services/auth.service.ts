@@ -15,4 +15,4 @@ export const findUserByResetCode = async (hashedCode: string, phone: string) =>
     phone: phone,
     passwordResetCode: hashedCode,
     passwordResetExpires: { $gt: Date.now() },
-  }).select('password passwordResetVerified passwordResetVerified passwordResetExpires passwordResetCode');
+  });

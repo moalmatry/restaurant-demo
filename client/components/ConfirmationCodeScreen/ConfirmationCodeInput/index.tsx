@@ -12,11 +12,13 @@ const CELL_COUNT = 4;
 interface ConfirmationCodeInputProps {
   onSubmit: () => void;
   onOutsideClick?: (code: string) => void;
+  onChange?: (code: string) => void;
 }
 
 const ConfirmationCodeInput = ({
   onSubmit,
   onOutsideClick,
+  onChange,
 }: ConfirmationCodeInputProps) => {
   const [value, setValue] = useState("");
 
@@ -31,8 +33,9 @@ const ConfirmationCodeInput = ({
   };
 
   useEffect(() => {
+    if (onChange) onChange(value);
     if (value.length === CELL_COUNT) {
-      handleSubmit();
+      // handleSubmit();
       if (onOutsideClick) onOutsideClick(value);
     }
   }, [value]);

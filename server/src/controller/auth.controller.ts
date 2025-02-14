@@ -91,6 +91,8 @@ export const confirmLoginCodeHandler = catchAsync(
     const hashedResetCode = hashedWithCrypto(code);
     const user = await findUserByResetCode(hashedResetCode, phone);
 
+    const filteredUser = removeProperties(user!, removedUser, renamedUser);
+
     if (!user) {
       return next(new AppError('Invalid reset code or expired', 401));
     }
@@ -105,6 +107,7 @@ export const confirmLoginCodeHandler = catchAsync(
     res.status(200).json({
       status: 'success',
       message: 'Logged in successfully',
+      data: filteredUser,
       token,
     });
   },

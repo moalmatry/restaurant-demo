@@ -7,11 +7,10 @@ import { setDir } from "@/util";
 
 const TobTabsHeader = () => {
   const dir = i18nLocale.dir();
+  const flexDir = setDir(dir);
   return (
     <View
-      className={`${setDir(
-        dir
-      )} justify-between items-center bg-white px-6 pb-4`}
+      className={`${flexDir} justify-between items-center bg-white px-6 pb-4`}
     >
       <UserInfo
         name="Restaurant Name"

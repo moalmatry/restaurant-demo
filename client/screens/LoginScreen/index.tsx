@@ -3,9 +3,8 @@ import Input from "@/components/Input";
 import LogoPart from "@/components/LoginScreen/LogoPart";
 import PrimaryButton from "@/components/PrimaryButton";
 import i18nLocale from "@/lib/locales/i18n";
-import { addPhone } from "@/store/features/auth/auth-slice";
-import { useAppDispatch } from "@/store/store";
-import { setDir } from "@/util";
+import { addPhone, login } from "@/store/features/auth/auth-slice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import { LoginInput, loginSchema } from "@/validators/loginSchema";
 import Feather from "@expo/vector-icons/Feather";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
@@ -16,9 +15,12 @@ import { useForm } from "react-hook-form";
 
 import { useTranslation } from "react-i18next";
 import { SafeAreaView, Text, View } from "react-native";
+import LoadingScreen from "../LoadingScreen";
 
 const LoginScreen = () => {
   const dir = i18nLocale.dir();
+  const token = useAppSelector((state) => state.auth.token);
+  const isLoading = useAppSelector((state) => state.auth.isLoading);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
@@ -35,22 +37,31 @@ const LoginScreen = () => {
     const { phone } = values;
     // const user = await onLogin(email, password, setAuthState);
     // if (user.status === "success") router.push("/(root)/(tabs)");
-    console.log(phone);
     dispatch(addPhone(phone));
+    dispatch(login({ phone }));
 
     router.replace("/confirmation-code");
     bottomSheetRef?.current?.close();
   };
 
   useEffect(() => {
-    if (
-      bottomSheetRef &&
-      typeof bottomSheetRef === "object" &&
-      bottomSheetRef.current
-    ) {
-      bottomSheetRef.current.present();
+    console.log(token);
+    if (token) {
+      bottomSheetRef?.current?.close();
+      router.replace("/(root)/(tabs)/(top-tabs)");
     }
-  }, [bottomSheetRef]);
+    if (!token) {
+      if (
+        bottomSheetRef &&
+        typeof bottomSheetRef === "object" &&
+        bottomSheetRef.current
+      ) {
+        bottomSheetRef.current.present();
+      }
+    }
+  }, [token]);
+
+  if (isLoading || token === undefined || !dir) return <LoadingScreen />;
   return (
     <SafeAreaView className="flex-1">
       <LogoPart />
@@ -62,7 +73,11 @@ const LoginScreen = () => {
       >
         <View className="flex-1 justify-between">
           <View>
-            <View className={`items-center gap-2 ${setDir(dir)}`}>
+            <View
+              className={`${
+                dir === "rtl" ? "flex-row-reverse" : "flex-row"
+              }   items-center gap-2`}
+            >
               <Feather name="phone" size={16} color="black" />
               <Text className="text-[16px] font-rubik">
                 {t("loginScreen.phoneNumber")}

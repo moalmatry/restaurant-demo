@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ID_KEY,
   NAME_KEY,
@@ -6,16 +5,17 @@ import {
   PROFILE_IMG_KEY,
   TOKEN_KEY,
 } from "@/constants";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { storeData } from "@/lib/locale-storage/storeData";
+import { confirmLoginCodeFn } from "@/services/auth/confirmLoginCode";
 import { loginFn } from "@/services/auth/login";
 import { register } from "@/services/auth/register";
-import { storeData } from "@/lib/locale-storage/storeData";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as SecureStore from "expo-secure-store";
 
 export interface Auth {
   id: string;
   authenticated: boolean;
-  token: string;
+  token: string | undefined;
   name: string;
   profileImg: string;
   phone: string;
@@ -26,7 +26,7 @@ export interface Auth {
 const initialState: Auth = {
   authenticated: false,
   id: "",
-  token: "",
+  token: undefined,
   name: "",
   profileImg: "",
   phone: "",
@@ -67,10 +67,11 @@ export const authSlice = createSlice({
       state.authenticated = false;
       state.token = "";
       // NOTE: In Mobile replace it with expo-secure-store etc......
-      // localStorage.removeItem(TOKEN_KEY);
-      // localStorage.removeItem(ID_KEY);
-      // localStorage.removeItem(NAME_KEY);
-      // localStorage.removeItem(PROFILE_IMG_KEY);
+      storeData(ID_KEY, "").then((data) => console.log(data));
+      SecureStore.setItem(TOKEN_KEY, "");
+      storeData(NAME_KEY, "").then((data) => console.log(data));
+      storeData(PROFILE_IMG_KEY, "").then((data) => console.log(data));
+      storeData(PHONE_KEY, "").then((data) => console.log(data));
     },
   },
   extraReducers: (builder) => {
@@ -80,12 +81,46 @@ export const authSlice = createSlice({
       state.name = action.payload.name;
       state.profileImg = action.payload.profileImg;
       state.isLoading = action.payload.isLoading;
-      // NOTE: In Mobile replace it with expo-secure-store etc......
-      // localStorage.setItem(ID_KEY, action.payload.id);
-      // localStorage.setItem(TOKEN_KEY, String(action.payload.token));
-      // localStorage.setItem(NAME_KEY, action.payload.name);
-      // localStorage.setItem(PROFILE_IMG_KEY, action.payload.profileImg);
+      // NOTE: In Mobile replace it with expo-secure-store
+      storeData(ID_KEY, action.payload.id).then((data) => console.log(data));
+
+      SecureStore.setItem(TOKEN_KEY, action.payload.token as string);
+
+      storeData(NAME_KEY, action.payload.name).then((data) =>
+        console.log(data)
+      );
+      storeData(PROFILE_IMG_KEY, action.payload.profileImg).then((data) =>
+        console.log(data)
+      );
+      storeData(PHONE_KEY, action.payload.phone).then((data) =>
+        console.log(data)
+      );
     });
+
+    builder.addCase(
+      confirmLoginCode.fulfilled,
+      (state, action: PayloadAction<Auth>) => {
+        state.authenticated = action.payload.authenticated;
+        state.token = action.payload.token;
+        state.name = action.payload.name;
+        state.profileImg = action.payload.profileImg;
+        state.isLoading = action.payload.isLoading;
+        // NOTE: In Mobile replace it with expo-secure-store
+        storeData(ID_KEY, action.payload.id).then((data) => console.log(data));
+
+        SecureStore.setItem(TOKEN_KEY, action.payload.token as string);
+
+        storeData(NAME_KEY, action.payload.name).then((data) =>
+          console.log(data)
+        );
+        storeData(PROFILE_IMG_KEY, action.payload.profileImg).then((data) =>
+          console.log(data)
+        );
+        storeData(PHONE_KEY, action.payload.phone).then((data) =>
+          console.log(data)
+        );
+      }
+    );
     builder.addCase(signup.fulfilled, (state, action: PayloadAction<Auth>) => {
       state.authenticated = action.payload.authenticated;
       state.token = action.payload.token;
@@ -95,7 +130,7 @@ export const authSlice = createSlice({
       // NOTE: In Mobile replace it with expo-secure-store etc......
       storeData(ID_KEY, action.payload.id).then((data) => console.log(data));
 
-      SecureStore.setItem(TOKEN_KEY, action.payload.token);
+      SecureStore.setItem(TOKEN_KEY, action.payload.token as string);
 
       storeData(NAME_KEY, action.payload.name).then((data) =>
         console.log(data)
@@ -110,17 +145,49 @@ export const authSlice = createSlice({
   },
 });
 
-export const login = createAsyncThunk<
+export const login = createAsyncThunk<Auth, { phone: string }>(
+  "auth/login",
+  async ({ phone }) => {
+    try {
+      const user = await loginFn(phone);
+      return {
+        isLoading: false,
+        authenticated: false,
+        token: "",
+        profileImg: "",
+        id: "",
+        name: "",
+        phone: "",
+        message: user.message,
+      };
+    } catch (e: any) {
+      console.log(e);
+      return {
+        isLoading: false,
+        authenticated: false,
+        token: "",
+        profileImg: "",
+        id: "",
+        name: "",
+        phone: "",
+        message: e.message ?? "",
+      };
+    }
+  }
+);
+
+export const confirmLoginCode = createAsyncThunk<
   Auth,
-  { email: string; password: string }
->("auth/login", async ({ email, password }) => {
+  { code: string; phone: string }
+>("auth/confirmLoginCode", async ({ code, phone }) => {
   try {
-    const user = await loginFn(email, password);
+    const user = await confirmLoginCodeFn(code, phone);
+
     return {
       isLoading: false,
-      authenticated: user.token ? true : false,
+      authenticated: false,
       token: user.token,
-      profileImg: user.data.profileImg ?? "",
+      profileImg: user.data.profileImg!,
       id: user.data.id,
       name: user.data.name,
       phone: user.data.phone ?? "",
