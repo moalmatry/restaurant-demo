@@ -1,3 +1,7 @@
+![Local Image](./screenshots/image.png)
+![Local Image](./screenshots/Screenshot%202025-02-15%20045804.png)
+![Local Image](./screenshots/Screenshot%202025-02-15%20044634.png)
+
 # Project Name Restaurant Demo
 
 ## Overview
@@ -7,6 +11,8 @@ This project consists of a client (React Native) and a server (Express). The cli
 ## Project Structure
 
 ## Client
+
+##### Tested on Redmi Note 7 (3GB) , Redmi Note 13 Pro (8GB) & Samsung A50 (4GB)
 
 Technical Stack
 
