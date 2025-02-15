@@ -4,6 +4,8 @@ import ezLogo2 from "@/assets/images/logo-2.png";
 import burger from "@/assets/images/burger.png";
 import potato from "@/assets/images/potato.png";
 import cola from "@/assets/images/cola.png";
+import noResult from "@/assets/images/no-result.png";
+
 export default {
   cola,
   burger,
@@ -11,4 +13,5 @@ export default {
   ezLogo,
   linearBackground,
   ezLogo2,
+  noResult,
 };

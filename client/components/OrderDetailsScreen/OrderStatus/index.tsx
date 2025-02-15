@@ -7,18 +7,30 @@ import { Image } from "react-native";
 import Status from "./components";
 import { useTranslation } from "react-i18next";
 
-const OrderStatus = () => {
+interface OrderStatusProps {
+  time: string;
+  orderType: string;
+  orderPrice: string;
+}
+
+const OrderStatus = ({ orderPrice, orderType, time }: OrderStatusProps) => {
   const { t } = useTranslation();
+  const orderStatus =
+    orderType === "Delivery"
+      ? t("homeScreen.delivery")
+      : orderType === "Pickup"
+      ? t("homeScreen.pickup")
+      : t("homeScreen.table");
   return (
     <CardLayout className="h-auto w-[355px]">
       <Status
         firstTitle={t("orderDetailsScreen.orderedAt")}
-        secondTitle="02:00"
+        secondTitle={time}
         icon={<AntDesign name="clockcircleo" size={16} color={black[200]} />}
       />
       <Status
         firstTitle={t("orderDetailsScreen.orderType")}
-        secondTitle={t("homeScreen.pickup")}
+        secondTitle={orderStatus}
         icon={
           <Ionicons
             name="checkbox-outline"
@@ -30,7 +42,7 @@ const OrderStatus = () => {
       />
       <Status
         firstTitle={t("orderDetailsScreen.orderedPrice")}
-        secondTitle={`2000 ${t("orderDetailsScreen.egp")}`}
+        secondTitle={`${orderPrice} ${t("orderDetailsScreen.egp")}`}
         icon={<Image source={icons.price} />}
       />
     </CardLayout>

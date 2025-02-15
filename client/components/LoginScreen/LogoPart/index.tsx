@@ -10,7 +10,7 @@ const LogoPart = () => {
       <ImageBackground
         source={images.linearBackground}
         className="flex-1 absolute w-full h-3/5"
-        resizeMode="stretch"
+        resizeMode="cover"
       />
       <View className="justify-between items-center px-6 pt-16 h-2/5">
         <Image

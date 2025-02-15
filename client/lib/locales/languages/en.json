@@ -5,6 +5,8 @@
     "title": "Login to get started with a seamless restaurant management experience",
     "phoneNumber": "Phone Number",
     "placeHolder": "Please enter your phone number",
+    "invalidPhoneNumber": "Please enter valid phone number",
+
     "login": "Login"
   },
   "ConfirmationCodeScreen": {
@@ -21,7 +23,9 @@
     "pickup": "Pickup",
     "delivery": "Delivery",
     "table": "Table",
-    "sendSms": "Send SMS"
+    "sendSms": "Send SMS",
+    "smsSentSuccessfully": "Sent Successfully",
+    "pickupSuccessfully": "Pickup Successfully"
   },
   "bottomTabs": {
     "home": "Home",
@@ -37,7 +41,8 @@
     "extras": "Extras",
     "noExtras": "Name Extra",
     "egp": "EGP",
-    "refund": "Refund"
+    "refund": "Refund",
+    "refundSuccess": "Refund request sent"
   },
   "settingsScreen": {
     "myBookings": "My Bookings",

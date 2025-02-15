@@ -90,6 +90,9 @@ const LoginScreen = () => {
                 placeholder={t("loginScreen.placeHolder")}
                 error={errors.phone?.message}
                 className={`${dir === "rtl" ? "text-right" : "text-left"}`}
+                errorViewClassName={`${
+                  dir === "rtl" ? "text-right" : "text-left"
+                }`}
               />
             </View>
           </View>

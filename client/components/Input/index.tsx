@@ -18,6 +18,7 @@ export interface InputProps {
   keyboardType?: KeyboardTypeOptions;
   error?: string;
   className?: string;
+  errorViewClassName?: string;
 }
 
 const Input = ({
@@ -30,6 +31,7 @@ const Input = ({
   error,
   keyboardType,
   className,
+  errorViewClassName,
 }: InputProps) => {
   return (
     <View>
@@ -59,7 +61,14 @@ const Input = ({
         />
       </View>
       {error && (
-        <Text className="mx-2 mt-1 font-rubik text-red-600">{error}</Text>
+        <Text
+          className={cn(
+            "mx-2 mt-1 font-rubik text-red-600",
+            errorViewClassName
+          )}
+        >
+          {error}
+        </Text>
       )}
     </View>
   );

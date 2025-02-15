@@ -5,6 +5,7 @@
     "title": "سجل الدخول للبدء في تجربة إدارة مطعم سلسة",
     "phoneNumber": "رقم الهاتف",
     "placeHolder": "يرجى إدخال رقم هاتفك",
+    "invalidPhoneNumber": "يرجي ادخال رقم هاتف صحيح",
     "login": "تسجيل الدخول"
   },
   "ConfirmationCodeScreen": {
@@ -21,7 +22,9 @@
     "pickup": "استلام",
     "delivery": "توصيل",
     "table": "طاولة",
-    "sendSms": "إرسال رسالة نصية"
+    "sendSms": "إرسال رسالة نصية",
+    "smsSentSuccessfully": "تم ارسال الرسالة",
+    "pickupSuccessfully": "تم الاستلام"
   },
   "bottomTabs": {
     "home": "الرئيسية",
@@ -38,7 +41,8 @@
     "noExtras": "بلا اضافات",
 
     "egp": "جنيه",
-    "refund": "استرداد"
+    "refund": "استرداد",
+    "refundSuccess": "تم ارسال طلب استرداد"
   },
   "settingsScreen": {
     "myBookings": "حجوزاتي",

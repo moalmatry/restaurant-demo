@@ -10,7 +10,7 @@ import icons from "@/constants/icons";
 import { storeData } from "@/lib/locale-storage/storeData";
 import i18nLocale, { setLocale } from "@/lib/locales/i18n";
 import { logout } from "@/store/features/auth/auth-slice";
-import { useAppDispatch } from "@/store/store";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 
 import { setDir, setRotateDir, setTextDir } from "@/util";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
@@ -22,6 +22,8 @@ import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import Toast from "react-native-toast-message";
 
 const SettingsScreen = () => {
+  const userName = useAppSelector((state) => state.auth.name);
+  const avatar = useAppSelector((state) => state.auth.profileImg);
   const dispatch = useAppDispatch();
   const dir = i18nLocale.dir();
   const flexRowDir = setDir(dir);
@@ -64,12 +66,7 @@ const SettingsScreen = () => {
         contentContainerClassName="pb-32 px-7"
       >
         <Header className={`${flexRowDir}`} />
-        <ProfileImage
-          name={"Restaurant Name"}
-          profileImage={
-            "https://ui-avatars.com/api/?name=ez&size=250&background=E31837&color=fff"
-          }
-        />
+        <ProfileImage name={userName} profileImage={avatar} />
 
         <View className="flex flex-col mt-10">
           <SettingItem

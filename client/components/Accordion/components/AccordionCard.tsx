@@ -1,3 +1,4 @@
+import { Extras } from "@/constants/data";
 import i18nLocale from "@/lib/locales/i18n";
 import { setDir, setTextDir } from "@/util";
 import React from "react";
@@ -6,7 +7,7 @@ import { Image, ImageSourcePropType, Text, View } from "react-native";
 interface AccordionCardProps {
   title: string;
   price: string;
-  extras?: { title: string; price: string }[];
+  extras?: Extras[];
   notes?: string;
   image: ImageSourcePropType;
 }
@@ -49,8 +50,7 @@ const AccordionCard = ({
                 <View key={index} className={`${setDir(dir)} justify-between`}>
                   <View>
                     <Text className={`text-sm font-rubik`}>
-                      {t("orderDetailsScreen.extras")}
-                      {extra.title}
+                      {t("orderDetailsScreen.extras")} {extra.name}
                     </Text>
                   </View>
                   <View className={`${setDir(dir)} gap-0.5`}>

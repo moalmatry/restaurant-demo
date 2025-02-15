@@ -16,6 +16,7 @@ const OrderCardButton = ({
 }: OrderCardButtonProps) => {
   return (
     <TouchableOpacity
+      // disabled={status === "active" ? true : false}
       onPress={() => {
         if (status === "disabled") return;
         if (onPress) onPress();
