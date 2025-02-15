@@ -14,6 +14,10 @@ This project consists of a client (React Native) and a server (Express). The cli
 
 ##### Tested on Redmi Note 7 (3GB) , Redmi Note 13 Pro (8GB) & Samsung A50 (4GB)
 
+##### Videos: https://drive.google.com/file/d/1i6Ti5LHnycCNobI2j0sRhkebo7LFrAIo/view?usp=sharing
+
+##### Videos: https://drive.google.com/file/d/1j_YFdGkCCLE5J-jEEYd0In8nTYsu4_CL/view?usp=sharing
+
 Technical Stack
 
 - Native Wind
