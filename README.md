@@ -146,7 +146,7 @@ The server is a TypeScript project with the following structure:
    pnpm start:dev
    ```
 
-3. .env example
+3. .env example (no need to update)
 
 ```sh
 BASE_URL=http://localhost:7000
@@ -155,3 +155,19 @@ JWT_SECRET=Example
 JWT_EXPIRES=90d
 EMAIL_FROM =hello@mo-almatry.com
 ```
+
+4. create Account (Send Post req to http://localhost:7000/auth/signup
+   )
+
+```sh
+{
+    "name": "your name",
+    "email": "your email",
+    "password": "123456789",
+    "confirmPassword": "123456789",
+    "phone":"your phone number"
+}
+```
+
+- if status success account created
+- when you login on the app you will receive the opt from maadirestate@gmail.com',
